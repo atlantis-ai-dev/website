@@ -1,0 +1,113 @@
+/* Body and general styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #74aaff, #ffffff); /* Smooth blue to white gradient */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Contact form container */
+.contact-form {
+    width: 400px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Heading styling */
+h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form field styling */
+.form-field {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Label styling */
+label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+/* Input and textarea styling */
+input[type="text"],
+input[type="email"],
+textarea,
+input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    margin-top: 8px;
+    background-color: #f9f9f9;
+    transition: border 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+input[type="file"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Textarea styling */
+textarea {
+    height: 120px;
+    resize: none;
+}
+
+/* Submit button styling */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: rgb(32, 125, 224);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #13b5b7;
+}
+
+/* Error message styling */
+.error {
+    color: #d32f2f;
+    font-size: 13px;
+    font-style: italic;
+    margin-top: 6px;
+}
+
+/* Responsive design for small screens */
+@media (max-width: 480px) {
+    .contact-form {
+        width: 90%;
+        padding: 20px;
+    }
+    h2 {
+        font-size: 24px;
+    }
+    button {
+        font-size: 14px;
+    }
+}

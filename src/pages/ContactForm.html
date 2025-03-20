@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="ContactForm.css">
+</head>
+<body>
+    <div class="contact-form">
+        <h2>Contact Us</h2>
+        <form id="contactForm" action="backend.php" method="POST" enctype="multipart/form-data">
+            <div class="form-field">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <span class="error" id="nameError"></span>
+            </div>
+
+            <div class="form-field">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <span class="error" id="emailError"></span>
+            </div>
+
+            <div class="form-field">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+                <span class="error" id="messageError"></span>
+            </div>
+
+            <div class="form-field">
+                <label for="file">Attach a file (optional):</label>
+                <input type="file" id="file" name="file">
+            </div>
+
+            <div class="form-field">
+                <label for="captcha">Captcha: 3 + 4 = ?</label>
+                <input type="text" id="captcha" name="captcha" required>
+                <span class="error" id="captchaError"></span>
+            </div>
+
+            <button type="submit" id="submitBtn">Submit</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
