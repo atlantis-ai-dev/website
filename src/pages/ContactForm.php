@@ -21,4 +21,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "There was an error sending your message.";
     }
 }
+
+$recaptchaSecret = '6LfE1AYrAAAAANwFGM1ZgULPfChq3bQiDIN101v5';
+$recaptchaResponse = $_POST['g-recaptcha-response'];
+
+$response = file_get_contents(
+    "https://www.google.com/recaptcha/api/siteverify?secret=$recaptchaSecret&response=$recaptchaResponse"
+);
+$responseKeys = json_decode($response, true);
+
+if (!$responseKeys["success"]) {
+    die('reCAPTCHA verification failed');
+}
 ?>

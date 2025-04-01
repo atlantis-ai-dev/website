@@ -33,11 +33,15 @@
                 <input type="file" id="file" name="file">
             </div>
 
-            <div class="form-field">
-                <label for="captcha">Captcha: 3 + 4 = ?</label>
-                <input type="text" id="captcha" name="captcha" required>
-                <span class="error" id="captchaError"></span>
-            </div>
+            <form action="/submit" method="POST">
+                <!-- Your form fields here -->
+                
+                <div class="g-recaptcha" data-sitekey="6LfE1AYrAAAAAIXwEh3b363Alm9py8bTSGTSzMMZ"></div>
+              
+                <input type="submit" value="Submit">
+              </form>
+              
+              <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
             <button type="submit" id="submitBtn">Submit</button>
         </form>

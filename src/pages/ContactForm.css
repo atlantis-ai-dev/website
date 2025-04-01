@@ -3,7 +3,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #74aaff, #ffffff); /* Smooth blue to white gradient */
+    background: linear-gradient(135deg, #74aaff, #000000); /* Smooth blue to white gradient */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,7 +78,7 @@ button {
     width: 100%;
     padding: 12px;
     background-color: rgb(32, 125, 224);
-    color: white;
+    color: black;
     border: none;
     border-radius: 6px;
     cursor: pointer;
