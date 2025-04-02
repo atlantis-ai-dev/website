@@ -33,13 +33,14 @@ h2 {
 .form-field {
     margin-bottom: 20px;
     text-align: left;
+    font-weight: bold;
 }
 
 /* Label styling */
 label {
     display: block;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: bold;
     color: #555;
     margin-bottom: 6px;
 }
@@ -49,7 +50,7 @@ input[type="text"],
 input[type="email"],
 textarea,
 input[type="file"] {
-    width: 100%;
+    width: 90%;
     padding: 12px;
     font-size: 16px;
     border-radius: 6px;
@@ -84,10 +85,11 @@ button {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
+    margin-top: 20px;
 }
 
 button:hover {
-    background-color: #13b5b7;
+    background-color: #0081fa;
 }
 
 /* Error message styling */

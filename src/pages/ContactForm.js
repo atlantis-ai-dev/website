@@ -42,6 +42,4 @@ document.getElementById("contactForm").addEventListener("submit", function(event
     if (valid) {
         document.getElementById("contactForm").submit();
     }
-
-    this.submit();
 });
