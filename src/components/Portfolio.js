@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Portfolio = () => {
     return (
         <>
-            <div className="my-4 py-4" id='portfolio'>
+            <div className="my-4 py-4 border-t-[2px] border-gray-200" id='portfolio'>
                 <Link to="/product">
                     <h2 className="my-2 text-center text-3xl text-sky-600 uppercase font-bold hover:text-sky-800 transition">
                         Products
