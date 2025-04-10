@@ -29,14 +29,20 @@ const Footer = () => {
                         <h6 className="text-sky-600 text-xl font-bold mb-4">LINKS</h6>
                         <ul className="text-md">
                         <li className="mb-2">
-                            <HashLink to="#" className="text-sky-600 hover:text-gray-900 hover:tracking-wider transition duration-250 ease-in-out">About</HashLink>
+                            <HashLink to="/" className="text-sky-600 hover:text-gray-900 hover:tracking-wider transition duration-250 ease-in-out">Home</HashLink>
                         </li>
                         <li className="mb-2">
-                            <HashLink to="#" className="text-sky-600 hover:text-gray-900 hover:tracking-wider transition duration-250 ease-in-out">Services</HashLink>
+                            <HashLink to="/tutorial" className="text-sky-600 hover:text-gray-900 hover:tracking-wider transition duration-250 ease-in-out">Tutorial</HashLink>
                         </li>
                         <li className="mb-2">
-                            <HashLink to="#" className="text-sky-600 hover:text-gray-900 hover:tracking-wider transition duration-250 ease-in-out">Contact</HashLink>
-                        </li>                            
+                            <HashLink to="/download" className="text-sky-600 hover:text-gray-900 hover:tracking-wider transition duration-250 ease-in-out">Download</HashLink>
+                        </li>
+                        <li className="mb-2">
+                            <HashLink to="/help" className="text-sky-600 hover:text-gray-900 hover:tracking-wider transition duration-250 ease-in-out">Help</HashLink>
+                        </li>
+                        <li className="mb-2">
+                            <HashLink to="/qna" className="text-sky-600 hover:text-gray-900 hover:tracking-wider transition duration-250 ease-in-out">Questions & Answers</HashLink>
+                        </li>                                  
                         </ul>
                     </div>
 

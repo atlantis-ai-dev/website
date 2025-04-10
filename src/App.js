@@ -14,6 +14,10 @@ import DemoProduct from './pages/DemoProduct';
 import Product from './pages/Product';
 import Blog from './pages/Blog';
 import Blog1 from './pages/blogs/blog1/blog1';
+import Download from './pages/Download';
+import Help from './pages/Help';
+import Tutorial from './pages/Tutorial';
+import Qna from './pages/QuestionAndAnswers';
 
 import {useDocTitle} from './components/CustomHook';
 import ScrollToTop from './components/ScrollToTop';
@@ -46,6 +50,10 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/get-demo" element={<DemoProduct />} />
             <Route path="/blogs/blog1" element={<Blog1 />} />
+            <Route path="/download" element={<Download />} />
+            <Route path="/help" element={<Help />} />
+            <Route path="/tutorial" element={<Tutorial />} />
+            <Route path="/qna" element={<Qna />} />
           </Routes>
         </ScrollToTop>
       </Router>
