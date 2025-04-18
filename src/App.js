@@ -18,6 +18,8 @@ import Download from './pages/Download';
 import Help from './pages/Help';
 import Tutorial from './pages/Tutorial';
 import Qna from './pages/QuestionAndAnswers';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
 
 import {useDocTitle} from './components/CustomHook';
 import ScrollToTop from './components/ScrollToTop';
@@ -54,6 +56,8 @@ function App() {
             <Route path="/help" element={<Help />} />
             <Route path="/tutorial" element={<Tutorial />} />
             <Route path="/qna" element={<Qna />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/sign-up" element={<SignUp />} />
           </Routes>
         </ScrollToTop>
       </Router>
