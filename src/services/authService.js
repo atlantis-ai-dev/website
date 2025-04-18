@@ -7,10 +7,10 @@ export function login({ email, password }) {
     });
   }
 
-  export function register({ username, email, password }) {
+export function register({ username, email, password }) {
     return apiClient('/auth/register', {
-      method: 'POST',
-      body: { username, email, password },
+        method: 'POST',
+        body: { username, email, password },
     });
-  }
+}
 

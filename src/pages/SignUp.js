@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import NavBar from '../components/Navbar/NavBar';
 import Footer from '../components/Footer';
 import { useDocTitle } from '../components/CustomHook';
+import { useNavigate } from 'react-router-dom';
+import { useUserStore } from '../services/store/useUserStore';
+import { register } from '../services/authService';
 
 const SignUp = () => {
   useDocTitle('Atlantis AI – Sign Up');
@@ -13,8 +16,9 @@ const SignUp = () => {
   const [confirm, setConfirm]       = useState('');
   const [agree, setAgree]           = useState(false);
   const [error, setError]           = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!agree) {
       setError('You must agree to the terms and conditions.');
@@ -25,8 +29,19 @@ const SignUp = () => {
       return;
     }
     setError('');
-    // TODO: call your sign‑up API, then redirect or set store
-    console.log({ fullName, email, password });
+
+    try {
+        const res = await register({ username: fullName, email, password });
+        // backend returns res.status (200) and res.data
+        console.log(res);
+        if (res.status === 200) {
+            console.log("hit");
+            useUserStore.getState().setUser(res.data);
+            navigate('/'); 
+        }
+    } catch (err) {
+        console.log(err);
+    }
   };
 
   return (
