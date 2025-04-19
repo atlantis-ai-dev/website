@@ -14,3 +14,21 @@ export function register({ username, email, password }) {
     });
 }
 
+export function verifyEmail(token) {
+  return apiClient(`/auth/confirm-email?token=${encodeURIComponent(token)}`, {
+    method: 'GET',
+  });
+}
+
+export function resendVerificationEmail({ email }) {
+  return apiClient('/auth/verify-email', {
+    method: 'POST',
+    body: { email },
+  });
+}
+
+export function confirmEmail(token) {
+  return apiClient(`/auth/confirm-email?token=${encodeURIComponent(token)}`, {
+    method: 'GET',
+  });
+}

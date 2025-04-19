@@ -6,13 +6,14 @@ import { Link } from 'react-router-dom';
 import { useDocTitle } from '../components/CustomHook';
 import { login } from '../services/authService';
 import { useUserStore } from '../services/store/useUserStore';
-
+import { useNotificationStore } from '../services/store/useNotificationStore';
 
 const Login = () => {
     useDocTitle('Atlantis AI – Login');
-    
+    const setUser = useUserStore(s => s.setUser);
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
+    const showNotification = useNotificationStore((state) => state.showNotification);
     const [password, setPassword] = useState('');
   
     const handleSubmit = async (e) => {
@@ -20,11 +21,25 @@ const Login = () => {
         try {
           const res = await login({ email, password });
           // backend returns res.status (200) and res.data
+          console.log(res);
           if (res.status === 200) {
-            useUserStore.getState().setUser(res.data);
-            navigate('/'); 
+            console.log(res);
+            setUser({
+              id:       res.data.id,
+              username: res.data.username,
+              email:    res.data.email,
+              isVerified: res.data.isVerified,
+            });
+
+            if (!res.data.isVerified) {
+              showNotification("Logged in successfully, please verify your email!", "success");
+              return navigate('/verify-email');
+            }
+            showNotification("Logged in successfully!", "success");
+            navigate('/');
           }
         } catch (err) {
+          showNotification("Invalid email or password, please try again", "error");
           console.log(err);
         }
       };

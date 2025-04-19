@@ -2,12 +2,14 @@ import React from 'react';
 import { HashLink } from 'react-router-hash-link';
 import { Link } from 'react-router-dom';
 import { useUserStore } from '../../services/store/useUserStore';
+import { useNotificationStore } from '../../services/store/useNotificationStore';
 
 const NavLinks = () => {
   const user      = useUserStore(state => state.user);
   const clearUser = useUserStore(state => state.clearUser);
   const initial   = user.username ? user.username.charAt(0).toUpperCase() : 'U';
   const isLoggedIn = Boolean(user.id);
+  const showNotification = useNotificationStore((state) => state.showNotification);
 
   return (
     <div className="flex items-center space-x-4 flex-nowrap overflow-x-auto">
@@ -54,6 +56,7 @@ const NavLinks = () => {
           <button
             onClick={() => {
               clearUser();
+              showNotification("You have logged out", "success");
               localStorage.removeItem('user-storage');
             }}
             className="text-red-600 hover:underline font-semibold text-lg"

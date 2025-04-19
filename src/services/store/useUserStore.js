@@ -8,7 +8,8 @@ export const useUserStore = create(
       user: {
         id: null,
         username: null,
-        email: null
+        email: null,
+        isVerified: false
       },
 
       // actions
@@ -18,7 +19,8 @@ export const useUserStore = create(
           user: {
             id: null,
             username: null,
-            email: null
+            email: null,
+            isVerified: false
           },
         }),
 

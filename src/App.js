@@ -19,10 +19,14 @@ import Help from './pages/Help';
 import Tutorial from './pages/Tutorial';
 import Qna from './pages/QuestionAndAnswers';
 import SignUp from './pages/SignUp';
+import Settings from './pages/Settings';
+import Notification from './components/Notification';
 import Login from './pages/Login';
+import VerifyEmailToken from './pages/VerifyEmailToken';
 
 import {useDocTitle} from './components/CustomHook';
 import ScrollToTop from './components/ScrollToTop';
+import VerifyEmail from './pages/VerifyEmail';
 
 function App() {
   useEffect(() => {
@@ -44,6 +48,7 @@ function App() {
   return (
     <>
       <Router>
+        <Notification />
         <ScrollToTop>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -58,6 +63,9 @@ function App() {
             <Route path="/qna" element={<Qna />} />
             <Route path="/login" element={<Login />} />
             <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/verify-email" element={<VerifyEmail />} /> 
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/verifyemailtoken" element={<VerifyEmailToken />} />
           </Routes>
         </ScrollToTop>
       </Router>

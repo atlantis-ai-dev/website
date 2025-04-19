@@ -1,4 +1,4 @@
-const baseURL = process.env.REACT_APP_BASE_URL || '';
+const baseURL = process.env.REACT_APP_BACKEND_URL || '';
 
 /**
  * A small wrapper around fetch to handle JSON + errors + cookies.

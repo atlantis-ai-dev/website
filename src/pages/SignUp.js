@@ -6,6 +6,7 @@ import { useDocTitle } from '../components/CustomHook';
 import { useNavigate } from 'react-router-dom';
 import { useUserStore } from '../services/store/useUserStore';
 import { register } from '../services/authService';
+import { useNotificationStore } from '../services/store/useNotificationStore';
 
 const SignUp = () => {
   useDocTitle('Atlantis AI – Sign Up');
@@ -17,6 +18,8 @@ const SignUp = () => {
   const [agree, setAgree]           = useState(false);
   const [error, setError]           = useState('');
   const navigate = useNavigate();
+  const showNotification = useNotificationStore((state) => state.showNotification);
+  const setUser = useUserStore((s) => s.setUser);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,10 +39,18 @@ const SignUp = () => {
         console.log(res);
         if (res.status === 200) {
             console.log("hit");
-            useUserStore.getState().setUser(res.data);
-            navigate('/'); 
+            showNotification("Successfully signed up! Please verify your email", "success")
+            setUser({ 
+              id: res.data.id, 
+              username: res.data.username, 
+              email: res.data.email, 
+              phone: res.data.phone,
+              isVerified: false 
+            });
+            navigate('/verify-email'); 
         }
     } catch (err) {
+        showNotification("Error signing up, please try again", "error");
         console.log(err);
     }
   };
