@@ -5,7 +5,7 @@ export function login({ email, password }) {
       method: 'POST',
       body: { email, password },
     });
-  }
+}
 
 export function register({ username, email, password }) {
     return apiClient('/auth/register', {

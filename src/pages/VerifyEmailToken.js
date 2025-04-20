@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import NavBar from '../components/Navbar/NavBar';
 import Footer from '../components/Footer';
+import { useUserStore } from '../services/store/useUserStore';
 import { useDocTitle } from '../components/CustomHook';
 import { confirmEmail } from '../services/authService';
 import { useNotificationStore } from '../services/store/useNotificationStore';
@@ -12,6 +13,7 @@ export default function VerifyEmailToken() {
   const token = searchParams.get('token');
   const navigate = useNavigate();
   const notify   = useNotificationStore((s) => s.showNotification);
+  const clearUser = useUserStore(state => state.clearUser);
 
   useEffect(() => {
     if (!token) {
@@ -22,7 +24,8 @@ export default function VerifyEmailToken() {
     confirmEmail(token)
       .then((res) => {
         if (res.status === 200 || res.success) {
-          notify("You've successfully verified your email", 'success');
+          notify("You've successfully verified your email, please login!", 'success');
+          clearUser();
         } else {
           notify('Verification failed', 'error');
         }
@@ -35,7 +38,7 @@ export default function VerifyEmailToken() {
         // Redirect back to login after a short pause
         setTimeout(() => navigate('/login', { replace: true }), 1500);
       });
-  }, [token, navigate, notify]);
+  }, [token, navigate, notify, clearUser]);
 
   return (
     <div className="flex flex-col min-h-screen">

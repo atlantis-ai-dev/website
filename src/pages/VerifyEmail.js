@@ -1,6 +1,6 @@
 // src/pages/VerifyEmail.js
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import NavBar from '../components/Navbar/NavBar';
 import Footer from '../components/Footer';
 import { useDocTitle } from '../components/CustomHook';
@@ -13,8 +13,16 @@ export default function VerifyEmail() {
   // We expect the email to be passed via navigation state
 
   const email = useUserStore((s) => s.user.email);
+  const userId = useUserStore(s => s.user.id);
+  const navigate = useNavigate();
   const [loading, setLoading]   = useState(false);
   const showNotification        = useNotificationStore(s => s.showNotification);
+
+  useEffect(() => {
+    if (!userId) {
+      navigate('/', { replace: true });
+    }
+  }, [userId, navigate]);
 
   const handleResend = async () => {
     setLoading(true);
@@ -31,7 +39,7 @@ export default function VerifyEmail() {
   return (
     <div className="flex flex-col min-h-screen">
       <NavBar />
-      <div className="flex-grow flex items-center justify-center bg-sky-50 px-4 py-20">
+      <div className="mt-36 flex-grow flex items-center justify-center bg-sky-50 px-4 py-20">
         <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg text-center space-y-6">
           <h2 className="text-2xl font-bold">Almost there!</h2>
           <p>
