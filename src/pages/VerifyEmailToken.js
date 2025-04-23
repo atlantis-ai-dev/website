@@ -15,7 +15,13 @@ export default function VerifyEmailToken() {
   const notify   = useNotificationStore((s) => s.showNotification);
   const clearUser = useUserStore(state => state.clearUser);
 
+  const didVerify = useRef(false);
+
   useEffect(() => {
+
+    if (didVerify.current) return;   // skip double-invoke
+    didVerify.current = true;
+    
     if (!token) {
       notify('No token provided', 'error');
       return navigate('/login', { replace: true });
