@@ -31,19 +31,21 @@ const Contact = () => {
         e.preventDefault();
         document.getElementById('submitBtn').disabled = true;
         document.getElementById('submitBtn').innerHTML = 'Loading...';
-        let fData = new FormData();
-        fData.append('first_name', firstName)
-        fData.append('last_name', lastName)
-        fData.append('email', email)
-        fData.append('phone_number', phone)
-        fData.append('message', message)
+
+        // Create the data object in the format the server expects
+        const data = {
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            message: message
+        };
 
         axios({
             method: "post",
-            url: process.env.REACT_APP_CONTACT_API,
-            data: fData,
+            url: 'http://localhost:5000/contact', // Your backend server endpoint
+            data: data,
             headers: {
-                'Content-Type':  'multipart/form-data'
+                'Content-Type': 'application/json'
             }
         })
         .then(function (response) {
@@ -53,7 +55,7 @@ const Contact = () => {
             //handle success
             Notiflix.Report.success(
                 'Success',
-                response.data.message,
+                'Your message has been sent successfully!',
                 'Okay',
             );
         })
@@ -61,18 +63,15 @@ const Contact = () => {
             document.getElementById('submitBtn').disabled = false;
             document.getElementById('submitBtn').innerHTML = 'send message';
             //handle error
-            const { response } = error;
-            if(response.status === 500) {
-                Notiflix.Report.failure(
-                    'An error occurred',
-                    response.data.message,
-                    'Okay',
-                );
+            console.error('Error:', error);
+            Notiflix.Report.failure(
+                'An error occurred',
+                'Failed to send message. Please try again.',
+                'Okay',
+            );
+            if(error.response && error.response.data.errors) {
+                setErrors(error.response.data.errors)
             }
-            if(response.data.errors !== null) {
-                setErrors(response.data.errors)
-            }
-            
         });
     }
     return (
