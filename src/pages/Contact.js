@@ -13,10 +13,10 @@ const Contact = () => {
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [message, setMessage] = useState('')
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState({})
 
     const clearErrors = () => {
-        setErrors([])
+        setErrors({})
     }
 
     const clearInput = () => {
@@ -37,6 +37,7 @@ const Contact = () => {
             first_name: firstName,
             last_name: lastName,
             email: email,
+            phone: phone,
             message: message
         };
 
@@ -62,16 +63,19 @@ const Contact = () => {
         .catch(function (error) {
             document.getElementById('submitBtn').disabled = false;
             document.getElementById('submitBtn').innerHTML = 'send message';
-            //handle error
-            console.error('Error:', error);
+
+            const serverErrors = error.response?.data?.errors;
+            if (serverErrors) {
+                setErrors(serverErrors);
+            } else {
+                setErrors({});
+            }
+
             Notiflix.Report.failure(
                 'An error occurred',
                 'Failed to send message. Please try again.',
                 'Okay',
             );
-            if(error.response && error.response.data.errors) {
-                setErrors(error.response.data.errors)
-            }
         });
     }
     return (
@@ -84,9 +88,9 @@ const Contact = () => {
 
                 <form onSubmit={sendEmail}>
 
-                    <div className="w-full bg-white p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-2xl shadow-2xl">
+                    <div className="w-full bg-sky-600 p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-2xl shadow-2xl">
                         <div className="flex">
-                            <h1 className="font-bold text-center lg:text-left text-blue-900 uppercase text-4xl">Send us a message</h1>
+                            <h1 className="font-bold text-center lg:text-left text-white uppercase text-4xl">Send us a message</h1>
                         </div>
                         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5">
                                 <div>
@@ -171,7 +175,7 @@ const Contact = () => {
                 </div>
                 </form>
                         <div
-                            className="w-full  lg:-mt-96 lg:w-2/6 px-8 py-6 ml-auto bg-blue-900 rounded-2xl">
+                            className="w-full  lg:-mt-96 lg:w-2/6 px-8 py-6 ml-auto bg-sky-600 rounded-2xl">
                             <div className="flex flex-col text-white">
                                 
                                 <div className="flex my-4 w-2/3 lg:w-3/4">
