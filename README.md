@@ -1,4 +1,4 @@
-# Atlantis AI Website
+# Atlantis AI Website Backend
 
 ## Overview
 Atlantis AI is a platform designed to maximize the usage of your Credit Card points through the use of AI
@@ -9,12 +9,12 @@ Atlantis AI is a platform designed to maximize the usage of your Credit Card poi
 3. [Contact](#contact)
 
 ## Installation
-To launch the website, follow these steps:
+To launch the backend, follow these steps:
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/atlantis-ai-dev/website.git
-    cd atlantis-ai-dev
+    git clone https://github.com/atlantis-ai-dev/website-backend.git
+    cd website-backend
     ```
 
 2. **Install dependencies:**
@@ -24,11 +24,11 @@ To launch the website, follow these steps:
 
 3. **Run the application:**
     ```bash
-    npm start
+    npm run dev
     ```
 
 ## Usage
-Once the application is running, you can access it at `http://localhost:3000`. 
+Once the application is running, you can access it at `http://localhost:4000`. 
 
 
 ## Contact
