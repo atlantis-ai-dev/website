@@ -13,10 +13,10 @@ const Contact = () => {
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [message, setMessage] = useState('')
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState({})
 
     const clearErrors = () => {
-        setErrors([])
+        setErrors({})
     }
 
     const clearInput = () => {
@@ -31,19 +31,22 @@ const Contact = () => {
         e.preventDefault();
         document.getElementById('submitBtn').disabled = true;
         document.getElementById('submitBtn').innerHTML = 'Loading...';
-        let fData = new FormData();
-        fData.append('first_name', firstName)
-        fData.append('last_name', lastName)
-        fData.append('email', email)
-        fData.append('phone_number', phone)
-        fData.append('message', message)
+
+        // Create the data object in the format the server expects
+        const data = {
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            phone: phone,
+            message: message
+        };
 
         axios({
             method: "post",
-            url: process.env.REACT_APP_CONTACT_API,
-            data: fData,
+            url: 'http://localhost:5000/contact', // Your backend server endpoint
+            data: data,
             headers: {
-                'Content-Type':  'multipart/form-data'
+                'Content-Type': 'application/json'
             }
         })
         .then(function (response) {
@@ -53,26 +56,26 @@ const Contact = () => {
             //handle success
             Notiflix.Report.success(
                 'Success',
-                response.data.message,
+                'Your message has been sent successfully!',
                 'Okay',
             );
         })
         .catch(function (error) {
             document.getElementById('submitBtn').disabled = false;
             document.getElementById('submitBtn').innerHTML = 'send message';
-            //handle error
-            const { response } = error;
-            if(response.status === 500) {
-                Notiflix.Report.failure(
-                    'An error occurred',
-                    response.data.message,
-                    'Okay',
-                );
+
+            const serverErrors = error.response?.data?.errors;
+            if (serverErrors) {
+                setErrors(serverErrors);
+            } else {
+                setErrors({});
             }
-            if(response.data.errors !== null) {
-                setErrors(response.data.errors)
-            }
-            
+
+            Notiflix.Report.failure(
+                'An error occurred',
+                'Failed to send message. Please try again.',
+                'Okay',
+            );
         });
     }
     return (
@@ -85,9 +88,9 @@ const Contact = () => {
 
                 <form onSubmit={sendEmail}>
 
-                    <div className="w-full bg-white p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-2xl shadow-2xl">
+                    <div className="w-full bg-sky-600 p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-2xl shadow-2xl">
                         <div className="flex">
-                            <h1 className="font-bold text-center lg:text-left text-blue-900 uppercase text-4xl">Send us a message</h1>
+                            <h1 className="font-bold text-center lg:text-left text-white uppercase text-4xl">Send us a message</h1>
                         </div>
                         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5">
                                 <div>
@@ -172,7 +175,7 @@ const Contact = () => {
                 </div>
                 </form>
                         <div
-                            className="w-full  lg:-mt-96 lg:w-2/6 px-8 py-6 ml-auto bg-blue-900 rounded-2xl">
+                            className="w-full  lg:-mt-96 lg:w-2/6 px-8 py-6 ml-auto bg-sky-600 rounded-2xl">
                             <div className="flex flex-col text-white">
                                 
                                 <div className="flex my-4 w-2/3 lg:w-3/4">

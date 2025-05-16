@@ -21,10 +21,14 @@ const NavBar = () => {
     }, [top]);
 
     return (
-        <nav className={`fixed top-0 w-full z-30 transition duration-300 ease-in-out mb-16 ${!top && 'bg-white shadow-lg'}`}>
+        <nav className={`fixed top-0 w-full z-30 transition duration-300 ease-in-out ${!top && 'bg-white shadow-lg'}`}>
             <div className="flex flex-row justify-between items-center py-2">
-                <div className="flex flex-row justify-center md:px-12 md:mx-12 items-center text-center font-semibold">
-                    <HashLink smooth to="/#hero"><img src={navBarImg} className="h-40 w-auto"></img></HashLink>
+                <div className="flex flex-row justify-center lg:px-12 lg:mx-12 items-center text-center font-semibold">
+                    <HashLink smooth to="/#hero"><img 
+  src={navBarImg} 
+  alt="Atlantis AI Logo" 
+  className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-auto max-w-full object-contain" 
+/></HashLink>
                     
                 </div>
                 <div className="group flex flex-col items-center">
@@ -42,9 +46,9 @@ const NavBar = () => {
                         <NavLinks />
                     </div>
 
-                    <div className={`fixed transition-transform duration-300 ease-in-out transit flex justify-center left-0 w-full h-auto rounded-md p-24 bg-white lg:hidden shadow-xl top-14 ${  isOpen ? "block" : "hidden" } `}>
+                    <div className={`absolute left-0 top-full -mt-px fixed transition-transform duration-300 ease-in-out transit left-0 w-full h-auto rounded-md p-4 bg-white lg:hidden shadow-xl top-16 sm:top-20 md:top-24 ${  isOpen ? "block" : "hidden" } `}>
                         <div className='flex flex-col space-y-6'>
-                            <NavLinks />
+                            <NavLinks vertical={true}/>
                         </div>                                                
                     </div>
 

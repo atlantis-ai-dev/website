@@ -4,8 +4,12 @@ import { Link } from 'react-router-dom';
 const Portfolio = () => {
     return (
         <>
-            <div className="my-4 py-4" id='portfolio'>
-                <h2 className="my-2 text-center text-3xl text-sky-600 uppercase font-bold">Products</h2>
+            <div className="my-4 py-4 border-t-[2px] border-gray-200" id='portfolio'>
+                <Link to="/product">
+                    <h2 className="my-2 text-center text-3xl text-sky-600 uppercase font-bold hover:text-sky-800 transition">
+                        Products
+                    </h2>
+                </Link>
                 <div className='flex justify-center'>
                     <div className='w-24 border-b-4 border-sky-600 mb-8'></div>
                 </div>
@@ -89,6 +93,16 @@ const Portfolio = () => {
                             </div>
                         </div>                    
                     </div>
+
+                    <div className="mt-12 text-center">
+                      <Link
+                        to="/product#product"
+                        className="text-white font-bold text-lg hover:bg-sky-600 bg-sky-600 transition text-lg shadow-xl rounded-xl px-6 py-3 duration-300"
+                      >
+                        Learn more about our products →
+                      </Link>
+                    </div>
+
                 </div>
             </div>
         </>
